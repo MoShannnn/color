@@ -1799,6 +1799,10 @@ select {
   height: auto;
 }
 
+.h-\[400px\] {
+  height: 400px;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -2125,6 +2129,10 @@ select {
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -3495,6 +3503,11 @@ select {
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .hover\:text-indigo-500:hover {

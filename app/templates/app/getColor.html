@@ -1,66 +1,100 @@
 {% extends 'app/base.html' %}
+{% load static %}
 
 {% block title %}
-Color| Home Page
+Color| Get my Color
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/uploadImage.css' %}">
 {% endblock %}
 
 {% block body %}
-<main class="relative flex flex-1 flex-col items-center overflow-auto bg-white">
-    <div class="flex w-full flex-1 flex-col bg-gray-50 p-5 laptop:p-7">
-        <h1 class="mb-8 text-4xl font-semibold">My notes:</h1>
-        <div class="mb-7">
-            <div class="relative flex w-full flex-col justify-center text-lg text-gray-900"><svg
-                    data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-                    class="icon pointer-events-none absolute ml-4 text-gray-400" width="1.25em"
-                    height="1.25em" viewBox="0 0 16 16">
-                    <path fill="currentColor" fill-rule="evenodd"
-                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06zM10.5 7a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0"
-                        clip-rule="evenodd"></path>
-                </svg><input
-                    class="block !rounded-full border-0 bg-white py-3 !pl-7 ring-1 ring-inset ring-black ring-opacity-5 placeholder:text-gray-400"
-                    placeholder="Search notes..."></div>
-            <div class="no-scrollbar mt-4 flex gap-2 overflow-auto"></div><!---->
-        </div>
-        <div class="mb-7 flex w-full select-none flex-col">
-            <div class="flex items-center justify-between gap-2">
-                <div class="inline-flex items-center gap-2 text-sm font-semibold">Select notes<!----><button
-                        class="bg-gray-200 relative inline-flex h-[1.5rem] w-[2.75rem] flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent p-0 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
-                        label="Bulk select" id="headlessui-switch-8" role="switch" type="button"
-                        tabindex="0" aria-checked="false" data-headlessui-state=""><span class="sr-only">Use
-                            setting</span><span aria-hidden="true"
-                            class="translate-x-0 pointer-events-none inline-block size-[1.25rem] transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span></button>
-                </div><!---->
-            </div>
-        </div>
-        <div class="flex flex-1">
-            <div class="flex max-h-max flex-1 select-none flex-col">
-                <div class="rounded-xl border-2 border-dashed bg-white p-7 text-center"><svg
-                        data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-                        class="icon text-gray-400" width="3em" height="3em" viewBox="0 0 24 24">
-                        <path fill="none" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="1.5"
-                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9">
-                        </path>
-                    </svg>
-                    <h3 class="mt-2 text-sm font-semibold text-gray-900">No notes</h3>
-                    <p class="mt-1 text-sm text-gray-500">Get started by creating a new note.</p>
-                    <div class="mt-6"><a href="/app/record" class="btn"><svg data-v-e8d572f6=""
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-                                class="icon" width="1.5em" height="1.5em" viewBox="0 0 16 16">
-                                <path fill="currentColor"
-                                    d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5z">
-                                </path>
-                            </svg>New Note</a></div>
+<div class="flex flex-1">
+    <div class="flex max-h-max flex-1 select-none flex-col justify-center">
+        <div id="uploadArea" class="m-auto rounded-3 p-6 my-4 laptop:bg-white laptop:p-8 flex flex-col">
+            <div class="mb-7 mt-5 mb-7">
+                <!-- Header -->
+                <div class="page-header mb-7"><!--[-->
+                    <h1>Get my Personal Color Palette</h1>
+                    <p>
+                        Upload your Image (up to 5MB) and get a color palette in some minutes.</p><!--]-->
+                </div>
+                <span class="upload-area__tooltip-data">jpeg, .png, .svg, .gif</span> <!-- Data Will be Comes From Js -->
+                <!-- End Header -->
+            
+                <div class="flex h-[400px] flex-col gap-5">
+                    <div class="flex flex-1 flex-col">
+
+                        <!-- Drop Zoon -->
+                        <div id="dropZoon" class="upload-area__drop-zoon drop-zoon flex flex-1 cursor-pointer flex-col items-center justify-center rounded-lg border-4 border-dashed border-gray-300 p-7 text-gray-400 hover:bg-gray-100">
+                            <span class="drop-zoon__icon">
+                                <i class="bx bxs-file-image"></i>
+                            </span>
+                            <p class="drop-zoon__paragraph flex flex-col items-center gap-2 text-2xl">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                    class="icon" style="" width="2em" height="2em" viewBox="0 0 16 16"
+                                    data-v-e8d572f6>
+                                    <g fill="currentColor">
+                                        <path
+                                            d="M7.25 10.25a.75.75 0 0 0 1.5 0V4.56l2.22 2.22a.75.75 0 1 0 1.06-1.06l-3.5-3.5a.75.75 0 0 0-1.06 0l-3.5 3.5a.75.75 0 0 0 1.06 1.06l2.22-2.22z" />
+                                        <path
+                                            d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25z" />
+                                    </g>
+                                </svg> Click, or drop your file here
+                            </p>                        <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
+                            <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image" draggable="false">
+                            <input type="file" id="fileInput" class="drop-zoon__file-input" accept="image/*">
+                        </div>
+                        <!-- End Drop Zoon -->
+                    
+                        
+                        <!-- End File Details -->
+
+                        <div class="self-center mt-5"><button class="inline-flex items-center justify-center gap-[0.5em]"><svg xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                            class="icon" style="vertical-align:-0.125em;" width="1em" height="1em"
+                            viewBox="0 0 16 16" data-v-e8d572f6>
+                            <path fill="currentColor" fill-rule="evenodd"
+                                d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8"
+                                clip-rule="evenodd" />
+                        </svg> Upload File</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+            
+            <div class="flex flex-col gap-7 tablet:flex-row"><!--[-->
+                <div class="flex flex-1 flex-col items-center rounded-2 border-2 border-gray-100 bg-white p-4 text-center text-gray-600"
+                   >
+                    <p class="font-semibold text-indigo-400"><span class="icon"
+                            style="font-size:1em;line-height:1em;width:1em;height:1em;" icon="globe"
+                            data-v-e8d572f6><!--[--><!--]--></span> 50+ languages</p>
+                    <p class="text-2">Transcribe audio to text in over 50 languages.</p>
+                </div>
+                <div class="flex flex-1 flex-col items-center rounded-2 border-2 border-gray-100 bg-white p-4 text-center text-gray-600"
+                   >
+                    <p class="font-semibold text-indigo-400"><span class="icon"
+                            style="font-size:1em;line-height:1em;width:1em;height:1em;" icon="microphone"
+                            data-v-e8d572f6><!--[--><!--]--></span> Up to 2 minutes</p>
+                    <p class="text-2">Transcribe up to 2 minutes of audio at a time.</p>
+                </div>
+                <div class="flex flex-1 flex-col items-center rounded-2 border-2 border-gray-100 bg-white p-4 text-center text-gray-600"
+                   >
+                    <p class="font-semibold text-indigo-400"><span class="icon"
+                            style="font-size:1em;line-height:1em;width:1em;height:1em;" icon="lock"
+                            data-v-e8d572f6><!--[--><!--]--></span> Privacy-first</p>
+                    <p class="text-2">Your files are deleted right after transcription.</p>
+                </div><!--]-->
+            </div>      
         </div>
     </div>
-    <div data-v-649a007b="" id="notif-manager"
-        class="pointer-events-none fixed bottom-0 z-50 flex w-full max-w-full flex-col gap-4 p-4 tablet:right-0 tablet:w-[350px]">
-        <div data-v-649a007b="" class="flex flex-col gap-4"></div>
-    </div>
-</main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/uploadImage.js' %}"></script>
 {% endblock %}
