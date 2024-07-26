@@ -14,3 +14,5 @@ from django.core.asgi import get_asgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'color.settings')
 
 application = get_asgi_application()
+
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

@@ -12,3 +12,9 @@ def register(request):
 
 def login(request):
     return render(request, 'auth/login.html')
+
+def searchEmail(request):
+    return render(request, 'auth/searchEmail.html')
+
+def forgotPassword(request):
+    return render(request, 'auth/forgotPassword.html')
