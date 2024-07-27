@@ -1,3 +1,28 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+import secrets
 
 # Create your models here.
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'email'
+
+    def __str__(self):
+        return self.email
+
+class Otp(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="otps")
+    otp_code = models.CharField(max_length=6, blank=True)
+    tp_created_at = models.DateTimeField(auto_now_add=True)
+    otp_expires_at = models.DateTimeField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.otp_code:
+            self.otp_code = secrets.token_hex(3)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.user.username
