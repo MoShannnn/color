@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -73,25 +75,27 @@ def verify_email(request, username):
 def login(request):
     if request.method == "POST":
          # Attempt to sign user in
-        username = request.POST["username"]
+        email = request.POST["email"]
         password = request.POST["password"]
-        print(username)
-        print(password)
-        user = authenticate(request, username=username, password=password)
-        if user is None:
-            print('kms')
+
+
+        user = authenticate(request, email=email, password=password)
 
          # Check if authentication successful
         if user is not None:
-            login(request, user)
+            auth_login(request, user)
             
-            return redirect('home')
+            return redirect('getColor')
         else:
             return render(request, "auth/login.html", {
                 "message": "Invalid username and/or password."
             })
 
     return render(request, 'auth/login.html')
+
+def logout_view(request):
+    auth_logout(request)
+    return HttpResponseRedirect(reverse("index"))
 
 def searchEmail(request):
     return render(request, 'auth/searchEmail.html')
