@@ -8,7 +8,7 @@ from django.utils import timezone
 
  
  
-@receiver(post_save, sender=settings.AUTH_USER_MODEL) 
+
 def create_token(sender, instance, created, **kwargs):
     if created:
         if instance.is_superuser:
@@ -31,7 +31,7 @@ def create_token(sender, instance, created, **kwargs):
                                 http://127.0.0.1:8000/verify-email/{instance.username}
                                 
                                 """
-        sender = "clintonmatics@gmail.com"
+        sender = "mycolor.mine@gmail.com"
         receiver = [instance.email, ]
        
         

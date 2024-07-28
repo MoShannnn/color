@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
 from .models import CustomUser
+from .signals import create_token
 
 # Create your views here.
 def index(request):
@@ -33,6 +34,7 @@ def register(request):
         try:
             user = CustomUser.objects.create_user(username, email, password)
             user.save()
+            create_token(CustomUser, user, created=True)
             messages.success(request, "Account created successfully! An OTP was sent to your Email")
         except IntegrityError:
             return render(request, "auth/register.html", {
@@ -69,6 +71,26 @@ def verify_email(request, username):
         })
 
 def login(request):
+    if request.method == "POST":
+         # Attempt to sign user in
+        username = request.POST["username"]
+        password = request.POST["password"]
+        print(username)
+        print(password)
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            print('kms')
+
+         # Check if authentication successful
+        if user is not None:
+            login(request, user)
+            
+            return redirect('home')
+        else:
+            return render(request, "auth/login.html", {
+                "message": "Invalid username and/or password."
+            })
+
     return render(request, 'auth/login.html')
 
 def searchEmail(request):
