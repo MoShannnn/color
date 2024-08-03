@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
-import uuid
+
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -31,13 +31,19 @@ def register(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
+        if username == "" or email == "" or username.strip() == "" or email.strip() == "":
+            messages.warning(request, "Please fill all fields")
+            return render(request, "auth/register.html", {
+                    
+                })
 
         # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "auctions/register.html", {
-                "message": "Passwords must match."
+            messages.warning(request, "Passwords must match.")
+            return render(request, "auth/register.html", {
+                
             })
 
         # Attempt to create new user
@@ -45,13 +51,13 @@ def register(request):
             user = CustomUser.objects.create_user(username, email, password)
             user.save()
             create_token(CustomUser, user, created=True)
-            messages.success(request, "Account created successfully! An OTP was sent to your Email")
         except IntegrityError:
+            messages.warning(request, "Username or email address is already registered.")
             return render(request, "auth/register.html", {
-                "message": "Username already taken."
+
             })
 
-        return redirect("verify-email", username=request.POST['username'])
+        return redirect("verify-email", username=username)
     else:
          return render(request, 'auth/register.html')
 
@@ -65,6 +71,7 @@ def verify_email(request, username):
 
             if user_otp.otp_expires_at < timezone.now():
                 return render(request, 'auth/verify_email.html', {
+                    'username': username, 
                     'message': 'OTP has expired'
                 })
             else:
@@ -74,9 +81,11 @@ def verify_email(request, username):
         else:
             messages.warning(request, "Invalid OTP entered, enter a valid OTP!")
             return render(request, 'auth/verify_email.html', {
+                'username':username
 
             })
     else:
+        messages.success(request, "Account created successfully! An OTP was sent to your Email")
         return render(request, 'auth/verify_email.html', {
             'username': username
         })
@@ -118,7 +127,7 @@ def forget_password(request):
         req_email = request.POST['email']
 
         if get_user_model().objects.filter(email=req_email).exists():
-            print('kms')
+
             user = CustomUser.objects.get(email=req_email) # get the user
             reset_link = generate_reset_link(user) # generate unique reset password link 
 

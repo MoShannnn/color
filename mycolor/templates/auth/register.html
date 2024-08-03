@@ -17,7 +17,21 @@ Color| Login
                             <h1 class="mb-3 text-2xl font-semibold leading-9 tracking-tight text-gray-900">Signup
                                 for a new a account</h1>
                             <div>
-                                <p class="mb-6 text-sm text-gray-400">You need to register to use this tool.</p>
+                                <p class="mb-6 text-sm text-gray-400">
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                        {% if message.tags %} 
+                                            <div class="{{ message.tags }}">
+                                        {% endif %}
+                                            {{ message }}
+                                        </div>
+                                        {% endfor %}
+                                    
+                                    {% endif %}
+                                    
+                                </p>
+
                                 <div class="space-y-2">
                                     <div class="relative flex flex-col gap-1" data-v-bc87dc0a><!---->
                                         <label
@@ -26,7 +40,7 @@ Color| Login
                                             data-v-bc87dc0a><!----> Username:</label>
                                         <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a>
                                             <input id="username" class="w-full" name="username" type="text"
-                                                placeholder="Username" value="" test-id="" data-v-bc87dc0a><!---->
+                                                placeholder="Username" value="" test-id="" data-v-bc87dc0a required><!---->
                                         </div>
                                         <!---->
                                     </div>
@@ -37,28 +51,28 @@ Color| Login
                                         <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a>
                                             <input
                                                 id="email_address" class="w-full" name="email" type="email"
-                                                placeholder="your@email.com" value="" test-id="" data-v-bc87dc0a><!---->
+                                                placeholder="your@email.com" value="" test-id="" data-v-bc87dc0a required><!---->
                                         </div><!---->
                                     </div>
                                     <div class="relative flex flex-col gap-1" data-v-bc87dc0a><!---->
                                         <label
-                                            for="first_name"
+                                            for="password"
                                             class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
                                             data-v-bc87dc0a><!----> Password:</label>
                                         <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a>
                                             <input id="password" class="w-full" name="password" type="password"
-                                                placeholder="Enter password" value="" test-id="" data-v-bc87dc0a><!---->
+                                                placeholder="Enter password" value="" test-id="" data-v-bc87dc0a required><!---->
                                         </div>
                                         <!---->
                                     </div>
                                     <div class="relative flex flex-col gap-1" data-v-bc87dc0a><!---->
                                         <label
-                                            for="first_name"
+                                            for="confirmation"
                                             class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
                                             data-v-bc87dc0a><!----> Confirm Password:</label>
                                         <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a>
                                             <input id="confirmation" class="w-full" name="confirmation" type="password"
-                                                placeholder="Re-Enter" value="" test-id="" data-v-bc87dc0a><!---->
+                                                placeholder="Re-Enter" value="" test-id="" data-v-bc87dc0a required><!---->
                                         </div>
                                         <!---->
                                     </div>
