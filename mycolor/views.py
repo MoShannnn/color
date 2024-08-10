@@ -70,9 +70,10 @@ def verify_email(request, username):
         if otp == user_otp.otp_code:
 
             if user_otp.otp_expires_at < timezone.now():
+                messages.warning(request, "OTP has expired, request a new OTP")
                 return render(request, 'auth/verify_email.html', {
                     'username': username, 
-                    'message': 'OTP has expired'
+
                 })
             else:
                 user.is_active = True
