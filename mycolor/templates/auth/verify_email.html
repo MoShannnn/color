@@ -17,7 +17,20 @@ Color| Login
                         <div>
                             <div>
                                 <div class="space-y-2">
-                                    <p class="mb-6 text-sm text-gray-400">Verify your email.</p>
+                                    <p class="mb-6 text-sm text-gray-400">
+                                        {% if messages %}
+
+                                        {% for message in messages %}
+                                        {% if message.tags %} 
+                                            <div class="{{ message.tags }}">
+                                        {% endif %}
+                                            {{ message }}
+                                        </div>
+                                        {% endfor %}
+
+                                    
+                                    {% endif %}
+                                    </p>
                                     <div class="relative flex flex-col gap-1" data-v-bc87dc0a><!----><label
                                             for="email_address"
                                             class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"

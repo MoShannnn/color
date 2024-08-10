@@ -20,19 +20,30 @@ Color| Login
                         <div>
                             <div>
                                 <div class="space-y-2">
-                                    <p class="mb-6 text-sm text-gray-400">Enter your email to receive a one-time
-                                        password (or use permanent password if you defined one).</p>
+                                    <p class="mb-6 text-sm text-gray-400">
+                                        {% if messages %}
+
+                                        {% for message in messages %}
+                                        {% if message.tags %} 
+                                            <div class="{{ message.tags }}">
+                                        {% endif %}
+                                            {{ message }}
+                                        </div>
+                                        {% endfor %}
+                                    
+                                    {% endif %}
+                                    </p>
                                     <!-- email -->
                                     <div class="relative flex flex-col gap-1" data-v-bc87dc0a>
                                         <label
                                             for="email_address"
                                             class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
-                                            data-v-bc87dc0a> Username:</label>
+                                            data-v-bc87dc0a> Email:</label>
                                         <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a>
                                             <input
                                             id="email" class="w-full" name="email"
                                             type="email" placeholder="Your email" value="" test-id=""
-                                            data-v-bc87dc0a>
+                                            data-v-bc87dc0a required>
                                         </div>
                                     </div>
                                     <!-- password -->
@@ -41,10 +52,11 @@ Color| Login
                                             for="password"
                                             class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
                                             data-v-bc87dc0a> Password: </label>
-                                        <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a><input
+                                        <div class="relative mt-1 rounded-md shadow-sm" data-v-bc87dc0a>
+                                            <input
                                             id="email_address" class="w-full" name="password"
                                             type="password" placeholder="******" value="" test-id=""
-                                            data-v-bc87dc0a>
+                                            data-v-bc87dc0a required>
                                         </div>
                                     </div>
                                 </div>

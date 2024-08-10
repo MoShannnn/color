@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.contrib import messages
 from .models import CustomUser
-from .signals import create_token
+from .services import create_token
 
 # Create your views here.
 def index(request):
@@ -102,13 +102,15 @@ def login(request):
         user = authenticate(request, email=email, password=password)
 
          # Check if authentication successful
+
         if user is not None:
             auth_login(request, user)
             
             return redirect('getColor')
         else:
+            messages.warning(request, "Invalid email or password.")
             return render(request, "auth/login.html", {
-                "message": "Invalid username and/or password."
+
             })
 
     return render(request, 'auth/login.html')
