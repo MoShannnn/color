@@ -6,8 +6,8 @@ from django.contrib.auth import get_user_model
 from django.db import IntegrityError
 
 from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+
+
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.http import HttpResponse, HttpResponseRedirect
@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.core.mail import send_mail
 from django.contrib import messages
 from .models import CustomUser
-from .services import create_token
+from .services import *
 
 # Create your views here.
 def index(request):
@@ -116,12 +116,6 @@ def login(request):
 
     return render(request, 'auth/login.html')
 
-# generate reset link for password
-def generate_reset_link(user):
-    uid = urlsafe_base64_encode(force_bytes(user.pk))
-    token = default_token_generator.make_token(user)
-    reset_link = f"http://127.0.0.1:8000//set_password/{uid}/{token}/"
-    return reset_link
 
 
 #password reset
@@ -133,27 +127,12 @@ def forget_password(request):
 
             user = CustomUser.objects.get(email=req_email) # get the user
             reset_link = generate_reset_link(user) # generate unique reset password link 
+            send_reset_link(user, reset_link) # send the link to the user email address
+            messages.success(request, "A reset link has been sent to your email address")
 
-            # email variables
-            subject="Reset your password"
-            message = f"""
-                                Hi {user.username}, here is the link you requested to reset your password:
-                                {reset_link}
-                
-                                
-                                """
-            sender = "mycolor.mine@gmail.com"
-            receiver = [user.email, ]
-             # send email
-            send_mail(
-                subject,
-                message,
-                sender,
-                receiver,
-                fail_silently=False,
-            )
+       
         else:
-            messages.warning(request, "This email is not registered")
+            messages.error(request, "This email is not registered")
             return redirect("forgotPassword")
     
     return render(request, 'auth/forgotPassword.html')
@@ -172,21 +151,17 @@ def logout_view(request):
 
 # set new password
 def setPassword(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = CustomUser.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
-        user = None
-    
+    user = is_valid_uidb64(uidb64)
     if user is not None and default_token_generator.check_token(user, token):
         if request.method == 'POST':
             new_password = request.POST['newPassword']
             confirm_password = request.POST['confirmation']
             if new_password != confirm_password:
-                 return render(request, 'auth/setPassword.html', {
+                messages.error(request, "Passwords do not match")
+                return render(request, 'auth/setPassword.html', {
                 'uidb64': uidb64,
                 'token': token,
-                "message": "Passwords do not match."
+               
 
                 })
             user.set_password(new_password)
