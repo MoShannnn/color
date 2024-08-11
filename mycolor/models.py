@@ -24,3 +24,12 @@ class Otp(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+class Image(models.Model):
+    image = models.ImageField(upload_to="images/")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="images")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

@@ -181,3 +181,7 @@ def setPassword(request, uidb64, token):
     else:
         return redirect('forgotPassword') 
 
+
+
+def getColor(request):
+    return render(request, 'app/getColor.html')

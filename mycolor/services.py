@@ -13,6 +13,7 @@ from django.utils.http import urlsafe_base64_encode
 from .models import CustomUser
 
 
+# create token for email verification
 def create_token(sender, instance, created, **kwargs):
     if created:
         if instance.is_superuser:
@@ -60,6 +61,7 @@ def generate_reset_link(user):
     reset_link = f"http://127.0.0.1:8000//set_password/{uid}/{token}/"
     return reset_link
 
+# send email with reset link
 def send_reset_link(user, reset_link):
          # email variables
             subject="Reset your password"
@@ -89,3 +91,5 @@ def is_valid_uidb64(uidb64):
     except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
         user = None
     return user
+
+

@@ -44,9 +44,13 @@ Color| Get my Color
                                             d="M3.5 9.75a.75.75 0 0 0-1.5 0v1.5A2.75 2.75 0 0 0 4.75 14h6.5A2.75 2.75 0 0 0 14 11.25v-1.5a.75.75 0 0 0-1.5 0v1.5c0 .69-.56 1.25-1.25 1.25h-6.5c-.69 0-1.25-.56-1.25-1.25z" />
                                     </g>
                                 </svg> Click, or drop your file here
-                            </p>                        <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
-                            <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image" draggable="false">
-                            <input type="file" id="fileInput" class="drop-zoon__file-input" accept="image/*">
+                            </p>                        
+                            <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
+                            <form id="uploadForm"  action = '{% url "getColor" %}' method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image" draggable="false">
+                                <input type="file" id="fileInput" class="drop-zoon__file-input" name="image"  accept="image/*" required>
+                       
                         </div>
                         <!-- End Drop Zoon -->
                     
@@ -62,6 +66,7 @@ Color| Get my Color
                                 clip-rule="evenodd" />
                         </svg> Upload File</button>
                         </div>
+                    </form>
 
                     </div>
                 </div>
