@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 import secrets
+import uuid
 
 # Create your models here.
 
@@ -9,6 +10,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     
 
     def __str__(self):

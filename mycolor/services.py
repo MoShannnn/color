@@ -11,7 +11,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_encode
 from .models import CustomUser
-
+from django.utils.text import slugify
 
 # create token for email verification
 def create_token(sender, instance, created, **kwargs):
@@ -27,13 +27,15 @@ def create_token(sender, instance, created, **kwargs):
         
         # email credentials
         otp = Otp.objects.filter(user=instance).last()
+
        
        
+        
         subject="Email Verification"
         message = f"""
                                 Hi {instance.username}, here is your OTP {otp.otp_code} 
                                 it expires in 5 minute, use the url below to redirect back to the website
-                                http://127.0.0.1:8000/verify-email/{instance.username}
+                                http://127.0.0.1:8000/verify-email/{instance.uuid}
                                 
                                 """
         sender = "mycolor.mine@gmail.com"

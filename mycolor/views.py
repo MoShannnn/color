@@ -4,6 +4,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
+from django.utils.text import slugify
 
 from django.contrib.auth.tokens import default_token_generator
 
@@ -56,14 +57,16 @@ def register(request):
             return render(request, "auth/register.html", {
 
             })
+        user_uuid = user.uuid
 
-        return redirect("verify-email", username=username)
+        return redirect('verify-email', user_uuid=user_uuid)
     else:
          return render(request, 'auth/register.html')
 
 # verify user email
-def verify_email(request, username):
-    user = CustomUser.objects.get(username=username)
+def verify_email(request, user_uuid):
+    user = CustomUser.objects.get(uuid=user_uuid)
+
     if request.method == "POST":
         otp = request.POST['otp']
         user_otp = user.otps.last()
@@ -71,25 +74,20 @@ def verify_email(request, username):
 
             if user_otp.otp_expires_at < timezone.now():
                 messages.warning(request, "OTP has expired, request a new OTP")
-                return render(request, 'auth/verify_email.html', {
-                    'username': username, 
+                return render(request, 'auth/verify_email.html', 
+                 {'user_uuid': user_uuid}
 
-                })
+                )
             else:
                 user.is_active = True
                 user.save()
                 return redirect('login')
         else:
             messages.warning(request, "Invalid OTP entered, enter a valid OTP!")
-            return render(request, 'auth/verify_email.html', {
-                'username':username
-
-            })
+            return render(request, 'auth/verify_email.html',{'user_uuid': user_uuid})
     else:
         messages.success(request, "Account created successfully! An OTP was sent to your Email")
-        return render(request, 'auth/verify_email.html', {
-            'username': username
-        })
+        return render(request, 'auth/verify_email.html', {'user_uuid': user_uuid})
 
 
 #login user
