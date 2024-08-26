@@ -12,7 +12,7 @@
                     </div>
                     <div class="flex flex-col gap-2">
                         <button class="inline-flex items-center justify-center gap-[0.5em] mb-5 bg-main-gradient">
-                            <a href="{% url 'index' %}">
+                            <a href="{% url 'colorPalette' %}">
                                 <svg data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
                                     class="icon" width="1em" height="1em" viewBox="0 0 24 24"
@@ -23,27 +23,46 @@
                                 </svg> Color Palette
                             </a>
                         </button>
-                        <a href="/app/record"
-                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500">
+                        <a href="{% url 'history' %}"
+                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 
+                            {% if request.resolver_match.url_name == 'history' %}
+                                bg-gray-50 text-indigo-500
+                            {% else %}
+                                text-gray-800
+                            {% endif %}">
                             <svg data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-                                class="icon text-gray-400 group-hover:text-inherit" width="24px"
+                                class="icon text-gray-400 group-hover:text-inherit 
+                                {% if request.resolver_match.url_name == 'history' %}
+                                    !text-inherit
+                                {% endif %}" width="24px"
                                 height="24px" viewBox="0 0 24 24">
                                 <path fill="currentColor" fill-rule="evenodd"
                                     d="M19.5 21a3 3 0 0 0 3-3v-4.5a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3V18a3 3 0 0 0 3 3zm-18-10.854V6a3 3 0 0 1 3-3h5.379a2.25 2.25 0 0 1 1.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 0 1 3 3v1.146A4.48 4.48 0 0 0 19.5 9h-15a4.48 4.48 0 0 0-3 1.146">
                                 </path>
                             </svg>
                             <div class="text-3">History</div>
-                        </a><a href="/app"
-                            class="router-link-active router-link-exact-active group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 !bg-gray-50 !text-indigo-500"
-                            aria-current="page">
-                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="icon text-gray-400 group-hover:text-inherit !text-inherit" height="24px" viewBox="0 -960 960 960" width="24px"
+                        </a>
+                        <a href="{% url 'getColor' %}"
+                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 
+                            {% if request.resolver_match.url_name == 'getColor' %}
+                                bg-gray-50 text-indigo-500
+                            {% else %}
+                                text-gray-800
+                            {% endif %}"
+                            aria-current="page"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="icon text-gray-400 group-hover:text-inherit
+                                {% if request.resolver_match.url_name == 'getColor' %}
+                                    !text-inherit
+                                {% endif %}" height="24px" viewBox="0 -960 960 960" width="24px"
                                 fill="#5f6368">
                                 <path fill="currentColor"
                                     d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 32.5-156t88-127Q256-817 330-848.5T488-880q80 0 151 27.5t124.5 76q53.5 48.5 85 115T880-518q0 115-70 176.5T640-280h-74q-9 0-12.5 5t-3.5 11q0 12 15 34.5t15 51.5q0 50-27.5 74T480-80Zm0-400Zm-220 40q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120-160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm200 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120 160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-160q9 0 14.5-5t5.5-13q0-14-15-33t-15-57q0-42 29-67t71-25h70q66 0 113-38.5T800-518q0-121-92.5-201.5T488-800q-136 0-232 93t-96 227q0 133 93.5 226.5T480-160Z" />
                             </svg>
                             <div class="text-3">Colors</div>
-                        </a><a href="/app/styles"
+                        </a>
+                        <a href="/app/styles"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500"><svg
                                 data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
@@ -54,11 +73,21 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             <div class="text-3">Styles</div>
-                        </a><a href="/app/account"
-                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500"><svg
+                        </a>
+                        <a href="{% url 'setting' %}"
+                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500
+                            {% if request.resolver_match.url_name == 'setting' %}
+                                bg-gray-50 text-indigo-500
+                            {% else %}
+                                text-gray-800
+                            {% endif %}">
+                            <svg
                                 data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-                                class="icon text-gray-400 group-hover:text-inherit" width="24px" height="24px"
+                                class="icon text-gray-400 group-hover:text-inherit
+                                {% if request.resolver_match.url_name == 'setting' %}
+                                    !text-inherit
+                                {% endif %}" width="24px" height="24px"
                                 viewBox="0 0 24 24">
                                 <path fill="currentColor" fill-rule="evenodd"
                                     d="M11.828 2.25c-.916 0-1.699.663-1.85 1.567l-.091.549a.8.8 0 0 1-.517.608a8 8 0 0 0-.478.198a.8.8 0 0 1-.796-.064l-.453-.324a1.875 1.875 0 0 0-2.416.2l-.243.243a1.875 1.875 0 0 0-.2 2.416l.324.453a.8.8 0 0 1 .064.796a8 8 0 0 0-.198.478a.8.8 0 0 1-.608.517l-.55.092a1.875 1.875 0 0 0-1.566 1.849v.344c0 .916.663 1.699 1.567 1.85l.549.091c.281.047.508.25.608.517q.09.243.198.478a.8.8 0 0 1-.064.796l-.324.453a1.875 1.875 0 0 0 .2 2.416l.243.243c.648.648 1.67.733 2.416.2l.453-.324a.8.8 0 0 1 .796-.064q.235.107.478.198c.267.1.47.327.517.608l.092.55c.15.903.932 1.566 1.849 1.566h.344c.916 0 1.699-.663 1.85-1.567l.091-.549a.8.8 0 0 1 .517-.608a8 8 0 0 0 .478-.198a.8.8 0 0 1 .796.064l.453.324a1.875 1.875 0 0 0 2.416-.2l.243-.243c.648-.648.733-1.67.2-2.416l-.324-.453a.8.8 0 0 1-.064-.796q.107-.235.198-.478c.1-.267.327-.47.608-.517l.55-.091a1.875 1.875 0 0 0 1.566-1.85v-.344c0-.916-.663-1.699-1.567-1.85l-.549-.091a.8.8 0 0 1-.608-.517a8 8 0 0 0-.198-.478a.8.8 0 0 1 .064-.796l.324-.453a1.875 1.875 0 0 0-.2-2.416l-.243-.243a1.875 1.875 0 0 0-2.416-.2l-.453.324a.8.8 0 0 1-.796.064a8 8 0 0 0-.478-.198a.8.8 0 0 1-.517-.608l-.091-.55a1.875 1.875 0 0 0-1.85-1.566zM12 15.75a3.75 3.75 0 1 0 0-7.5a3.75 3.75 0 0 0 0 7.5"

@@ -1,0 +1,217 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %} Color| Get my
+Color {% endblock %} {% block styles %}
+<style>
+  .setting-darker-bg {
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
+  }
+
+  #main-navbar {
+    display: none !important;
+  }
+
+  .account-section {
+    border-radius: 0.75rem;
+    max-width: 32rem;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .account-section {
+    display: flex;
+    flex-direction: column;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    margin: 0 auto 50px;
+  }
+</style>
+{% endblock %} {% block body %}
+<div class="py-7">
+  <div id="account-info" class="account-section">
+    <div class="mb-6">
+      <h2
+        data-v-e3a25fcf=""
+        class="text-xl font-semibold leading-7 text-gray-900"
+      >
+        Account Info
+      </h2>
+      <p class="mt-1 text-sm leading-6 text-gray-500">
+        Update your account information.
+      </p>
+    </div>
+    <div class="flex flex-1 flex-col gap-4">
+      <div
+        data-v-bc87dc0a=""
+        data-v-e3a25fcf=""
+        class="relative flex flex-col gap-1"
+      >
+        <!----><label
+          data-v-bc87dc0a=""
+          for="first_name"
+          class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
+          ><!---->
+          First name:</label
+        >
+        <div data-v-bc87dc0a="" class="relative mt-1 rounded-md shadow-sm">
+          <input
+            data-v-bc87dc0a=""
+            id="first_name"
+            class="w-full"
+            name="first_name"
+            type="text"
+            placeholder="Your first name"
+            test-id=""
+          /><!---->
+        </div>
+        <!---->
+      </div>
+      <div
+        data-v-bc87dc0a=""
+        data-v-e3a25fcf=""
+        class="relative flex flex-col gap-1"
+      >
+        <!----><label
+          data-v-bc87dc0a=""
+          for="last_name"
+          class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
+          ><!---->
+          Last name:</label
+        >
+        <div data-v-bc87dc0a="" class="relative mt-1 rounded-md shadow-sm">
+          <input
+            data-v-bc87dc0a=""
+            id="last_name"
+            class="w-full"
+            name="last_name"
+            type="text"
+            placeholder="Your last name"
+            test-id=""
+          /><!---->
+        </div>
+        <!---->
+      </div>
+      <div
+        data-v-bc87dc0a=""
+        data-v-e3a25fcf=""
+        class="relative flex flex-col gap-1"
+      >
+        <!----><label
+          data-v-bc87dc0a=""
+          for="email"
+          class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
+          ><!---->
+          Email:</label
+        >
+        <div data-v-bc87dc0a="" class="relative mt-1 rounded-md shadow-sm">
+          <input
+            data-v-bc87dc0a=""
+            id="email"
+            class="w-full"
+            name="email"
+            type="email"
+            placeholder="Your email"
+            test-id=""
+          /><!---->
+        </div>
+        <!---->
+      </div>
+    </div>
+    <button
+      data-v-e3a25fcf=""
+      class="inline-flex items-center justify-center gap-[0.5em] btn-2 mt-6 w-full self-end text-base"
+    >
+      <svg
+        data-v-e8d572f6=""
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true"
+        role="img"
+        class="icon"
+        width="1em"
+        height="1em"
+        viewBox="0 0 448 512"
+        style="vertical-align: -0.125em"
+      >
+        <path
+          fill="currentColor"
+          d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7c-12-12-28.3-18.7-45.3-18.7zm0 96c0-17.7 14.3-32 32-32h192c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zm160 160a64 64 0 1 1 0 128a64 64 0 1 1 0-128"
+        ></path>
+      </svg>
+      Save changes
+    </button>
+  </div>
+
+  <div id="deletion" class="account-section">
+    <h2 data-v-e3a25fcf="">Other</h2>
+    <div class="flex flex-col gap-4">
+      <a
+        data-v-e3a25fcf=""
+        class="inline-flex items-center justify-center gap-[0.5em] btn-2"
+        href="logout"
+      >
+        <svg
+          data-v-e8d572f6=""
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          aria-hidden="true"
+          role="img"
+          class="icon"
+          width="1em"
+          height="1em"
+          viewBox="0 0 448 512"
+          style="vertical-align: -0.125em"
+        >
+          <path
+            fill="currentColor"
+            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+          ></path>
+        </svg>
+        Logout</a
+      ><button
+        data-v-e3a25fcf=""
+        class="inline-flex items-center justify-center gap-[0.5em] btn-3 text-red-400 ring-red-400"
+        data-testid="delete-account"
+      >
+        <svg
+          data-v-e8d572f6=""
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          aria-hidden="true"
+          role="img"
+          class="icon"
+          width="1em"
+          height="1em"
+          viewBox="0 0 512 512"
+          style="vertical-align: -0.125em"
+        >
+          <path
+            fill="currentColor"
+            d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32m0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24m32 224a32 32 0 1 0-64 0a32 32 0 1 0 64 0"
+          ></path>
+        </svg>
+        Delete account
+      </button>
+    </div>
+  </div>
+
+  <div class="flex w-full justify-center gap-6">
+    <a
+      data-v-e3a25fcf=""
+      href="https://talknotes.io/legal/privacy"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="text-sm text-gray-400"
+      >Privacy Policy</a
+    ><a
+      data-v-e3a25fcf=""
+      href="https://talknotes.io/legal/terms"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="text-sm text-gray-400"
+      >Terms of Service</a
+    >
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'js/uploadImage.js' %}"></script>
+{% endblock %}

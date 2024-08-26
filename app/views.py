@@ -12,6 +12,11 @@ def getColor(request):
         
     return render(request, 'app/getColor.html')
 
-
-def view_history(request):
+def viewHistory(request):
     return render(request, 'app/history.html')
+
+def viewSetting(request):
+    return render(request, 'app/setting.html')
+
+def viewColorPalette(request):
+    return render(request, 'app/colorPalette.html')
