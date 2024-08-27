@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+
+@color-1: #07C1B8;
+@color-2: #046861;
+@color-3: #01463C;
+@color-4: #AA6C08;
+@color-5: #7B4103;
+
+html,
+body,
+.container {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+}
+
+.container {
+	display: flex;
+}
+
+.item {
+	position: relative;
+	flex: 1;
+	transition: padding 500ms ease;
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		color: #fff;
+		font-size: 2.5vw;
+		text-transform: uppercase;
+		transition: opacity 500ms ease;
+	}
+	&:hover {
+		padding: 0 5%;
+		&:before {
+			opacity: 1;
+		}
+	}
+}
+
+.generate-items(5);
+
+.generate-items(@n, @i: 1) when (@i =< @n) {
+	.item-@{i} {
+		.create-color-var(@i);
+		background-color: @@colorSet;
+		&:before {
+			content: '@{@{colorSet}}';
+		}
+	}
+	.generate-items(@n, (@i + 1));
+}
+
+.create-color-var(@var) {
+	@colorSet: 'color-@{var}';
+}

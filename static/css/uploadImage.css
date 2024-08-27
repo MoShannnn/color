@@ -80,6 +80,8 @@
 .upload-area__drop-zoon {
   position: relative;
   height: 11.25rem;
+  width: 80%;
+  margin: 0 auto;
   /* 180px */
   display: flex;
   justify-content: center;

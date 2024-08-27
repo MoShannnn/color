@@ -1,0 +1,91 @@
+.container {
+  height: 30px;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+.container {
+  display: flex;
+}
+.item {
+  position: relative;
+  flex: 1;
+  transition: padding 500ms ease;
+  cursor: pointer;
+}
+.item:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  color: #fff;
+  text-transform: uppercase;
+  transition: opacity 500ms ease;
+}
+.item:hover {
+  padding: 0 5%;
+}
+.item:hover:before {
+  opacity: 1;
+}
+.item-1 {
+  background-color: #07C1B8;
+}
+.item-1:before {
+  content: '#07C1B8';
+}
+.item-2 {
+  background-color: #046861;
+}
+.item-2:before {
+  content: '#046861';
+}
+.item-3 {
+  background-color: #01463C;
+}
+.item-3:before {
+  content: '#01463C';
+}
+.item-4 {
+  background-color: #AA6C08;
+}
+.item-4:before {
+  content: '#AA6C08';
+}
+.item-5 {
+  background-color: #7B4103;
+}
+.item-5:before {
+  content: '#7B4103';
+}
+
+.lipstickPalette {
+  text-align: center;
+  display: inline-block;
+  width: 105px;
+  height: 70px;
+  margin: 0 6px;
+  overflow: hidden;
+}
+
+.colorDrop {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 8px;
+  background-color: #01463C;
+}
+
+.colorName {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  text-transform: capitalize;
+  color: rgb(107 114 128);
+  font-weight: 500;
+}
+

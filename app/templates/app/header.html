@@ -5,7 +5,7 @@
             <div
                 class="flex w-full max-w-[400px] select-none flex-col justify-between border-r bg-white p-4 laptop:relative laptop:flex laptop:w-[250px]">
                 <div class="flex flex-col gap-7">
-                    <div class="flex items-center justify-center"><a href="/app"
+                    <div class="flex items-center justify-center"><a href="{% url 'index' %}"
                             class="router-link-active router-link-exact-active" aria-current="page"><img
                                 src="/images/brand/logo-color.svg" height="40px" alt="Talknotes logo" draggable="false"
                                 class="h-[40px]"></a>
@@ -45,7 +45,7 @@
                         </a>
                         <a href="{% url 'getColor' %}"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 
-                            {% if request.resolver_match.url_name == 'getColor' %}
+                            {% if request.resolver_match.url_name == 'getColor' or request.resolver_match.url_name == 'myColor' %}
                                 bg-gray-50 text-indigo-500
                             {% else %}
                                 text-gray-800
@@ -53,8 +53,8 @@
                             aria-current="page"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="icon text-gray-400 group-hover:text-inherit
-                                {% if request.resolver_match.url_name == 'getColor' %}
-                                    !text-inherit
+                                {% if request.resolver_match.url_name == 'getColor' or request.resolver_match.url_name == 'myColor' %} 
+                                !text-inherit
                                 {% endif %}" height="24px" viewBox="0 -960 960 960" width="24px"
                                 fill="#5f6368">
                                 <path fill="currentColor"

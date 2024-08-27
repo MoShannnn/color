@@ -1,11 +1,12 @@
 {% extends 'app/base.html' %} 
+
 {% load static %} 
+
 {% block title %} Color| Get my
 Color 
 {% endblock %} 
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/uploadImage.css' %}" />
 <style>
     .color-palette {
         width: 100%;
@@ -14,8 +15,9 @@ Color
         object-position: 70% 0%;
     }
 </style>
-{% endblock %} {% block body %}
+{% endblock %} 
 
+{% block body %}
 <nav
   id="main-navbar"
   style="margin-top: -30px !important"
@@ -162,6 +164,4 @@ Color
     </div>
   </div>
 </div>
-{% endblock %} {% block scripts %}
-<script src="{% static 'js/uploadImage.js' %}"></script>
 {% endblock %}
