@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from mycolor.models import Image
 from django.http import HttpResponseRedirect
+from app.services import *
 # Create your views here.
 
 @login_required(login_url="/login")
@@ -10,6 +11,14 @@ def getColor(request):
         image = request.FILES["image"]
         season = "True Spring"
         Image.objects.create(image=image, user=request.user, season=season)
+        season_name, personal_colors, lipstick_colors = get_season_and_colors(season)
+
+
+        return render(request, 'app/colorResult.html',{
+            "season_name": season_name,
+            "personal_colors": personal_colors,
+            "lipstick_colors": lipstick_colors
+        })
         
     return render(request, 'app/getColor.html')
 

@@ -27,5 +27,5 @@ def get_season_and_colors(season):
     return season_name, personal_colors, lipstick_colors
 
 
-print(get_season_and_colors("True Spring"))
+# print(get_season_and_colors("True Spring"))
 
