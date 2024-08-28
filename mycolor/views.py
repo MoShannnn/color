@@ -90,6 +90,10 @@ def verify_email(request, user_uuid):
         return render(request, 'auth/verify_email.html', {'user_uuid': user_uuid})
 
 
+def deleteAccount(request):
+    request.user.delete()
+    return HttpResponseRedirect(reverse("index"))
+
 #login user
 def login(request):
     if request.method == "POST":

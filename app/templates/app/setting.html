@@ -38,6 +38,8 @@ Color {% endblock %} {% block styles %}
         Update your account information.
       </p>
     </div>
+  <form action = "{% url 'setting' %}"  method = "POST">
+      {% csrf_token %}
     <div class="flex flex-1 flex-col gap-4">
       <div
         data-v-bc87dc0a=""
@@ -49,46 +51,24 @@ Color {% endblock %} {% block styles %}
           for="first_name"
           class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
           ><!---->
-          First name:</label
+           username:</label
         >
         <div data-v-bc87dc0a="" class="relative mt-1 rounded-md shadow-sm">
           <input
             data-v-bc87dc0a=""
             id="first_name"
             class="w-full"
-            name="first_name"
+            name="username"
             type="text"
-            placeholder="Your first name"
+            placeholder=""
+            value="{{user.username}}"
             test-id=""
+            required
           /><!---->
         </div>
         <!---->
       </div>
-      <div
-        data-v-bc87dc0a=""
-        data-v-e3a25fcf=""
-        class="relative flex flex-col gap-1"
-      >
-        <!----><label
-          data-v-bc87dc0a=""
-          for="last_name"
-          class="inline-flex items-center gap-1 text-2 font-semibold text-gray-600"
-          ><!---->
-          Last name:</label
-        >
-        <div data-v-bc87dc0a="" class="relative mt-1 rounded-md shadow-sm">
-          <input
-            data-v-bc87dc0a=""
-            id="last_name"
-            class="w-full"
-            name="last_name"
-            type="text"
-            placeholder="Your last name"
-            test-id=""
-          /><!---->
-        </div>
-        <!---->
-      </div>
+      
       <div
         data-v-bc87dc0a=""
         data-v-e3a25fcf=""
@@ -108,8 +88,10 @@ Color {% endblock %} {% block styles %}
             class="w-full"
             name="email"
             type="email"
-            placeholder="Your email"
+            placeholder=""
+            value="{{user.email}}"
             test-id=""
+            required
           /><!---->
         </div>
         <!---->
@@ -138,7 +120,9 @@ Color {% endblock %} {% block styles %}
       </svg>
       Save changes
     </button>
+  </form>
   </div>
+
 
   <div id="deletion" class="account-section">
     <h2 data-v-e3a25fcf="">Other</h2>
@@ -165,12 +149,15 @@ Color {% endblock %} {% block styles %}
             d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
           ></path>
         </svg>
-        Logout</a
-      ><button
+        Logout</a>
+
+     
+      <button
         data-v-e3a25fcf=""
         class="inline-flex items-center justify-center gap-[0.5em] btn-3 text-red-400 ring-red-400"
         data-testid="delete-account"
       >
+      <a href ="deleteAccount">
         <svg
           data-v-e8d572f6=""
           xmlns="http://www.w3.org/2000/svg"
@@ -189,9 +176,13 @@ Color {% endblock %} {% block styles %}
           ></path>
         </svg>
         Delete account
+      </a>
       </button>
+    
     </div>
+  
   </div>
+
 
   <div class="flex w-full justify-center gap-6">
     <a
