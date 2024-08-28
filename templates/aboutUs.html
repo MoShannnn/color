@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Color| Get my Color
+{% endblock %}
+
+{% block styles %}
+<style>
+    .header-top {
+        display: none !important;
+    }
+
+	.via-gray-900\/40 {
+		--tw-gradient-stops: var(--tw-gradient-from), rgb(17 24 39 / 0.1) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+	}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container relative-container flex">
+    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-xl px-5 pb-8 pt-40 max-w-sm mr-5 mb-5 shadow-xl" style="width: 260px; height: 420px;">
+        <img src="{% static 'images/team/Sandi.jpg' %}" alt="University of Southern California" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+        <h3 class="z-10 mt-3 text-2xl font-bold text-white">Sandi Sharoi</h3>
+        <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">sandisharoi18@gmail.com</div>
+    </article>
+
+    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-xl px-5 pb-8 pt-40 max-w-sm mr-5 mb-5" style="width: 260px; height: 420px;">
+        <img src="{% static 'images/team/KhantHayThiTun.jpg' %}" alt="University of Southern California" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+        <h3 class="z-10 mt-3 text-2xl font-bold text-white">Khant Hay Thi Tun</h3>
+        <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">khanthaythi@gmail.com</div>
+    </article>
+
+    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-xl px-5 pb-8 pt-40 max-w-sm mr-5 mb-5" style="width: 260px; height: 420px;">
+        <img src="{% static 'images/team/KaungMinSat.jpg' %}" alt="University of Southern California" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+        <h3 class="z-10 mt-3 text-2xl font-bold text-white">Kaung Min Sat</h3>
+        <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">kms.kaungminsat@gmail.com</div>
+    </article>
+
+    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-xl px-5 pb-8 pt-40 max-w-sm mr-5 mb-5" style="width: 260px; height: 420px;">
+        <img src="{% static 'images/team/NangMoShan.jpg' %}" alt="University of Southern California" class="absolute inset-0 h-full w-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+        <h3 class="z-10 mt-3 text-2xl font-bold text-white">Nang Mo Shan</h3>
+        <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">moshan2500@gmail.com</div>
+    </article>
+
+	<div class="hero-p-line-wrap"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

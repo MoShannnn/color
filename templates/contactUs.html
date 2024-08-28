@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %} {% block title %} Color| Get my
+Color {% endblock %} 
+{% block styles %}
+<style>
+  .header-top {
+    display: none !important;
+  }
+
+  .via-gray-900\/40 {
+    --tw-gradient-stops: var(--tw-gradient-from),
+      rgb(17 24 39 / 0.1) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  }
+
+  .max-w-sm {
+    max-width: 30rem !important;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %} 
+
+{% block body %}
+    <div class="container relative-container flex">
+        <div
+            class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+            <div class="flex flex-col items-center py-10">
+            <img
+                class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                src="{% static 'images/trueColorLogo2.png' %}"
+                alt="Bonnie image"
+            />
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                True Color
+            </h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+                >Join TrueColor to present your best selves with confidence.</span
+            >
+            <div class="flex mt-4 md:mt-8">
+                <a
+                href="mailto:mycolor.mine@gmail.com"
+                class="inline-flex text-blue-700 items-center px-4 py-2 text-sm font-medium text-center no-underline"
+                >
+                <i class="fa-solid fa-envelope text-blue-700 mr-2 fa-lg"></i>
+                mycolor.mine@gmail.com
+                </a
+                >
+
+                <a
+                href="mailto:mycolor.mine@gmail.com"
+                class="inline-flex text-blue-700 items-center px-4 py-2 text-sm font-medium text-center no-underline"
+                >
+                <i class="fa-solid fa-phone text-blue-700 mr-2 fa-lg"></i>
+                09 897 635353
+                </a
+                >
+
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} {% block scripts %} {% endblock %}

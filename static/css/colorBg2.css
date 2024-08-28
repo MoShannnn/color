@@ -2670,14 +2670,12 @@ html {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    display: block;
   }
   
   .container.relative-container {
     z-index: 3;
     flex: 0 auto;
     margin: 0px 220px 15px;
-    display: block;
     position: relative;
   }
   

@@ -26,6 +26,11 @@ def index(request):
 def home(request):
     return render(request, 'home.html')
 
+def aboutUs(request):
+    return render(request, 'aboutUs.html')
+
+def contactUs(request):
+    return render(request, 'contactUs.html')
 
 # register new user
 def register(request):

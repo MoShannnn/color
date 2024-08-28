@@ -42,6 +42,9 @@ def getColor(request):
 def viewHistory(request):
     return render(request, 'app/history.html')
 
+def viewStyle(request):
+    return render(request, 'app/getStyle.html')
+
 def viewSetting(request):
     if request.method == "POST":
         user = request.user

@@ -7,6 +7,71 @@ Color| Get my Color
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/uploadImage.css' %}">
+
+<style>
+    .loader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    border: 3px solid;
+    border-color: #e2e8f0 #e2e8f0 transparent transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+    .loader::after,
+    .loader::before {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid;
+    border-color: transparent transparent #4338ca #4338ca;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotationBack 0.5s linear infinite;
+    transform-origin: center center;
+    }
+    .loader::before {
+    width: 32px;
+    height: 32px;
+    border-color: #e2e8f0 #e2e8f0 transparent transparent;
+    animation: rotation 1.5s linear infinite;
+    }
+        
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+    @keyframes rotationBack {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+    }
+    
+    .loader-container {
+        background-color: rgb(255 255 255 / 50%);
+        backdrop-filter: blur(10px); 
+        z-index: 1000; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
@@ -74,8 +139,26 @@ Color| Get my Color
         </div>
     </div>
 </div>
+
+<div class="fixed inset-0 loader-container d-none">
+    <span class="loader"></span>
+</div>
+
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script src="{% static 'js/uploadImage.js' %}"></script>
+
+<!-- JQuery -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#uploadForm').on('submit', function() {
+            // Remove the d-none class to show the loader
+            $('.loader-container').removeClass('d-none');
+        });
+    });
+</script>
 {% endblock %}

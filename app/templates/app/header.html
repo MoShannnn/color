@@ -1,3 +1,4 @@
+{% load static %}
 <div id="navbar" class="hidden laptop:flex">
     <div class="h-full">
         <div class="fixed left-0 top-0 z-[1] h-full w-full bg-white bg-opacity-80 laptop:hidden"></div>
@@ -5,14 +6,16 @@
             <div
                 class="flex w-full max-w-[400px] select-none flex-col justify-between border-r bg-white p-4 laptop:relative laptop:flex laptop:w-[250px]">
                 <div class="flex flex-col gap-7">
-                    <div class="flex items-center justify-center"><a href="{% url 'index' %}"
-                            class="router-link-active router-link-exact-active" aria-current="page"><img
-                                src="/images/brand/logo-color.svg" height="40px" alt="Talknotes logo" draggable="false"
+                    <div class="flex items-center justify-center">
+                        <a href="{% url 'index' %}"
+                            class="router-link-active router-link-exact-active mr-2" aria-current="page"><img
+                                src="{% static 'images/trueColorLogo2.png' %}" height="40px" alt="True Color logo" draggable="false"
                                 class="h-[40px]"></a>
+                                True Color
                     </div>
                     <div class="flex flex-col gap-2">
                         <button class="inline-flex items-center justify-center gap-[0.5em] mb-5 bg-main-gradient">
-                            <a href="{% url 'colorPalette' %}">
+                            <a href="{% url 'getColor' %}">
                                 <svg data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
                                     class="icon" width="1em" height="1em" viewBox="0 0 24 24"
@@ -20,7 +23,7 @@
                                     <path fill="currentColor" fill-rule="evenodd"
                                         d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5m9-3a.75.75 0 0 1 .728.568l.258 1.036a2.63 2.63 0 0 0 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258a2.63 2.63 0 0 0-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.63 2.63 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.63 2.63 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5M16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395a1.5 1.5 0 0 0-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395a1.5 1.5 0 0 0 .948-.948l.395-1.183A.75.75 0 0 1 16.5 15"
                                         clip-rule="evenodd"></path>
-                                </svg> Color Palette
+                                </svg> My Personal Color
                             </a>
                         </button>
                         <a href="{% url 'history' %}"
@@ -43,9 +46,9 @@
                             </svg>
                             <div class="text-3">History</div>
                         </a>
-                        <a href="{% url 'getColor' %}"
+                        <a href="{% url 'colorPalette' %}"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 
-                            {% if request.resolver_match.url_name == 'getColor' or request.resolver_match.url_name == 'myColor' %}
+                            {% if request.resolver_match.url_name == 'colorPalette' or request.resolver_match.url_name == 'myColor' %}
                                 bg-gray-50 text-indigo-500
                             {% else %}
                                 text-gray-800
@@ -53,20 +56,29 @@
                             aria-current="page"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="icon text-gray-400 group-hover:text-inherit
-                                {% if request.resolver_match.url_name == 'getColor' or request.resolver_match.url_name == 'myColor' %} 
+                                {% if request.resolver_match.url_name == 'colorPalette' or request.resolver_match.url_name == 'myColor' %} 
                                 !text-inherit
                                 {% endif %}" height="24px" viewBox="0 -960 960 960" width="24px"
                                 fill="#5f6368">
                                 <path fill="currentColor"
                                     d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 32.5-156t88-127Q256-817 330-848.5T488-880q80 0 151 27.5t124.5 76q53.5 48.5 85 115T880-518q0 115-70 176.5T640-280h-74q-9 0-12.5 5t-3.5 11q0 12 15 34.5t15 51.5q0 50-27.5 74T480-80Zm0-400Zm-220 40q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120-160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm200 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120 160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-160q9 0 14.5-5t5.5-13q0-14-15-33t-15-57q0-42 29-67t71-25h70q66 0 113-38.5T800-518q0-121-92.5-201.5T488-800q-136 0-232 93t-96 227q0 133 93.5 226.5T480-160Z" />
                             </svg>
-                            <div class="text-3">Colors</div>
+                            <div class="text-3">Color Palettes</div>
                         </a>
-                        <a href="/app/styles"
-                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500"><svg
+                        <a href="{% url 'style' %}"
+                            class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500
+                            {% if request.resolver_match.url_name == 'style' %}
+                                bg-gray-50 text-indigo-500
+                            {% else %}
+                                text-gray-800
+                            {% endif %}">
+                            <svg
                                 data-v-e8d572f6="" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-                                class="icon text-gray-400 group-hover:text-inherit" width="24px" height="24px"
+                                class="icon text-gray-400 group-hover:text-inherit
+                                {% if request.resolver_match.url_name == 'style' %}
+                                    !text-inherit
+                                {% endif %}" width="24px" height="24px"
                                 viewBox="0 0 24 24">
                                 <path fill="currentColor" fill-rule="evenodd"
                                     d="M20.599 1.5c-.376 0-.743.111-1.055.32l-5.08 3.385a18.8 18.8 0 0 0-3.471 2.987a10.04 10.04 0 0 1 4.815 4.815a18.8 18.8 0 0 0 2.987-3.472l3.386-5.079A1.902 1.902 0 0 0 20.599 1.5m-8.3 14.025a19 19 0 0 0 1.896-1.207a8.03 8.03 0 0 0-4.513-4.513A19 19 0 0 0 8.475 11.7l-.278.5a5.26 5.26 0 0 1 3.601 3.602zM6.75 13.5A3.75 3.75 0 0 0 3 17.25a1.5 1.5 0 0 1-1.601 1.497a.75.75 0 0 0-.7 1.123a5.25 5.25 0 0 0 9.8-2.62a3.75 3.75 0 0 0-3.75-3.75"
@@ -109,9 +121,6 @@
                             href="https://talknotes.canny.io/feature-requests" rel="noopener noreferrer" target="_blank"
                             data-canny-link="true">Suggest an
                             idea</a></div>
-                    <div class="pointer text-gray-500 hover:text-gray-400"><a href="https://talknotes.canny.io/bugs"
-                            rel="noopener noreferrer" target="_blank" data-canny-link="true">Report a
-                            bug</a></div>
                 </div>
             </div>
         </div>

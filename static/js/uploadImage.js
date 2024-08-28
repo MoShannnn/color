@@ -95,9 +95,6 @@ function uploadFile(file) {
     fileReader.addEventListener('load', function () {
       // After Half Second 
       setTimeout(function () {
-        // Add Class (upload-area--open) On (uploadArea)
-        uploadArea.classList.add('upload-area--open');
-
         // Hide Loading-text (please-wait) Element
         loadingText.style.display = "none";
         // Show Preview Image
