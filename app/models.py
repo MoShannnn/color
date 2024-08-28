@@ -24,3 +24,9 @@ class Color(models.Model):
     def __str__(self):
         return self.name
 
+class SeasonInfo(models.Model):
+    season = models.ForeignKey(Season, on_delete=models.CASCADE, related_name="info")
+    description = models.TextField()
+
+    def __str__(self):
+        return self.season.name

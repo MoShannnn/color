@@ -3,3 +3,5 @@ django-tailwind
 django-browser-reload
 python-decouple
 Pillow==10.4.0
+openai==0.28.0
+numpy == 2.1.0

@@ -48,7 +48,7 @@
 
     <div class="hidden gap-3 laptop:flex">
         <a href="{% url 'getColor' %}" class="btn-2 text-indigo-300 hover:text-indigo-500">Cancel</a>
-        <button class="inline-flex items-center justify-center gap-[0.5em] px-5"><a href="logout">Save</a></button>
+        <button class="inline-flex items-center justify-center gap-[0.5em] px-5"><a href="history">Save</a></button>
     </div>
   </div>
 </nav>
@@ -57,43 +57,38 @@
   <div class="flex max-h-max flex-1 select-none flex-col justify-center">
     <section class="profile-card rounded-3 p-5 my-4 laptop:bg-white shadow-4">
         <div class="image m-auto">
-            <img src="{% static 'images/test.jpg' %}" alt="user image">
+            <img src="data:image/jpeg;base64,{{ encoded_image }}" alt="uploaded image">
         </div>
-        
-        <p class="text-gray-700 m-auto font-semibold uppercase mb-2" style="font-size: 22px;">True Spring</p>
+       
+        <!-- Season name -->
+        <p class="text-gray-700 m-auto font-semibold uppercase mb-2" style="font-size: 22px;">{{ season_name }}</p>
 
         <div class="colorPaletteContainer mb-6">
           <h4 class="text-gray-500"><i class="fa-solid fa-swatchbook mr-2"></i>Color Palette</h4>
-
+        
           <div class="container mt-4">
-            <div class="item item-1"></div>
-            <div class="item item-2" style="background-color: #046861;"></div>
-            <div class="item item-3"></div>
-            <div class="item item-4"></div>
-            <div class="item item-5"></div>
-            <div class="item item-1"></div>
-            <div class="item item-2"></div>
-            <div class="item item-3"></div>
-            <div class="item item-4"></div>
-            <div class="item item-5"></div>
-            <div class="item item-1"></div>
-            <div class="item item-2"></div>
-            <div class="item item-3"></div>
-            <div class="item item-4"></div>
-            <div class="item item-5"></div>
+            {% for color in personal_colors %}
+            <!-- Palette Colors -->
+          
+            <div class="item item-2" style="background-color: {{ color.hex }}"></div>
+            {% endfor %}
+            
           </div>
+         
         </div>
         
         <div class="lipstickPaletteContainer mb-5">
+          <!-- LipStick -->
           <h4 class="text-gray-500"><i class="fa-solid fa-droplet mr-2"></i>Lipstick Color</h4>
 
           <div class="lipstickPalettes mt-4 flex">
+          {% for color in lipstick_colors %}
             <div class="lipstickPalette">
-              <span class="colorDrop"></span>
-              <div class="colorName">Pastel Lilac</div>
+              <span class="colorDrop" style="background-color: {{ color.hex }}"></span>
+              <div class="colorName">{{color.name}}</div>
             </div>
-          
-            <div class="lipstickPalette">
+          {% endfor %}
+            <!-- <div class="lipstickPalette">
               <span class="colorDrop"></span>
               <div class="colorName">Pastel Yellow</div>
             </div>
@@ -109,7 +104,7 @@
             <div class="lipstickPalette">
               <span class="colorDrop"></span>
               <div class="colorName">Pcherries jubilee</div>
-            </div>
+            </div> -->
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 from app.models import *
+from mycolor.models import *
 
 
 def get_colors_for_season(season_name):
@@ -26,6 +27,11 @@ def get_season_and_colors(season):
 
     return season_name, personal_colors, lipstick_colors
 
+
+def save_result(image, user, season):
+    Image.objects.create(image=image, user=user, season=season)
+
+   
 
 # print(get_season_and_colors("True Spring"))
 
