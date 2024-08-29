@@ -7,11 +7,16 @@
                 class="flex w-full max-w-[400px] select-none flex-col justify-between border-r bg-white p-4 laptop:relative laptop:flex laptop:w-[250px]">
                 <div class="flex flex-col gap-7">
                     <div class="flex items-center justify-center">
-                        <a href="{% url 'index' %}"
-                            class="router-link-active router-link-exact-active mr-2" aria-current="page"><img
-                                src="{% static 'images/trueColorLogo2.png' %}" height="40px" alt="True Color logo" draggable="false"
-                                class="h-[40px]"></a>
+                        <a href="{% url 'index' %}">
+                            <a href="{% url 'index' %}"
+                            class="router-link-active router-link-exact-active flex items-center" aria-current="page">
+                            <img
+                                src="{% static 'images/trueColorLogo.png' %}" class="mr-2" width="40px" height="40px" alt="True Color logo" draggable="false"
+                                class="h-[40px]">
                                 True Color
+                            </a>
+                               
+                        </a>
                     </div>
                     <div class="flex flex-col gap-2">
                         <button class="inline-flex items-center justify-center gap-[0.5em] mb-5 bg-main-gradient">
@@ -109,18 +114,16 @@
                         </a>
                     </div>
                 </div>
-                <div class="flex flex-col gap-2 text-2">
-                    <button data-canny-changelog=""
-                        class="m-0 w-min bg-transparent p-0 text-2 font-normal !text-gray-500 text-inherit">About
-                        us</button>
-                    <div class="pointer text-gray-500 hover:text-gray-400">
-                        <a href="https://talknotes.notion.site/talknotes/Talknotes-Guide-8950e8c5aca04f18a10a856b02a3dc63"
-                            rel="noopener noreferrer" target="_blank" data-canny-link="false">Guide</a>
-                    </div>
-                    <div class="pointer text-gray-500 hover:text-gray-400"><a
-                            href="https://talknotes.canny.io/feature-requests" rel="noopener noreferrer" target="_blank"
-                            data-canny-link="true">Suggest an
-                            idea</a></div>
+                <div class="flex flex-col text-2">
+                    <a href="{% url 'aboutUs' %}"
+                        class="sub-link mb-2 bg-transparent p-0 text-2 font-normal !text-gray-500 text-inherit">
+                        About</a>
+                    <a href="{% url 'aboutUs' %}"
+                        class="sub-link mb-2 bg-transparent p-0 text-2 font-normal !text-gray-500 text-inherit">
+                        Guide</a>
+                    <a href="{% url 'contactUs' %}"
+                        class="sub-link mb-2 bg-transparent p-0 text-2 font-normal !text-gray-500 text-inherit">
+                        Contact Us</a>
                 </div>
             </div>
         </div>
