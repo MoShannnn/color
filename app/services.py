@@ -28,8 +28,8 @@ def get_season_and_colors(season):
     return season_name, personal_colors, lipstick_colors
 
 
-def save_result(image, user, season):
-    Image.objects.create(image=image, user=user, season=season)
+
+    
 
    
 
