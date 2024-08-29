@@ -31,6 +31,7 @@
                                 </svg> My Personal Color
                             </a>
                         </button>
+
                         <a href="{% url 'history' %}"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 
                             {% if request.resolver_match.url_name == 'history' %}
@@ -51,6 +52,7 @@
                             </svg>
                             <div class="text-3">History</div>
                         </a>
+
                         <a href="{% url 'colorPalette' %}"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500 
                             {% if request.resolver_match.url_name == 'colorPalette' or request.resolver_match.url_name == 'myColor' %}
@@ -70,6 +72,7 @@
                             </svg>
                             <div class="text-3">Color Palettes</div>
                         </a>
+
                         <a href="{% url 'style' %}"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500
                             {% if request.resolver_match.url_name == 'style' %}
@@ -91,6 +94,7 @@
                             </svg>
                             <div class="text-3">Styles</div>
                         </a>
+
                         <a href="{% url 'setting' %}"
                             class="group flex items-center gap-2 rounded-2 p-3 text-2 font-medium text-gray-800 transition-[100ms] hover:bg-gray-50 hover:text-indigo-500
                             {% if request.resolver_match.url_name == 'setting' %}

@@ -47,25 +47,28 @@ Color {% endblock %} {% block styles %}
     class="mt-3 grid select-none gap-5 p-1 tablet:grid-cols-2 desktop:grid-cols-3"
   >
     <div class="style-card">
+      {% for image in images %}
       <div
         class="flex items-center justify-center rounded bg-indigo-100 p-1 font-medium text-indigo-600"
       >
-        <img src="{% static 'images/test.jpg' %}" class="resultImage" alt="" />
+      <!-- saved images -->
+        <img src="{{ image.image.url }}" class="resultImage" alt="" />
       </div>
       <div class="my-2 mt-5">
         <div
           class="mb-1 inline-flex justify-center w-full items-center font-semibold text-gray-900 hover:text-gray-600"
         >
-          True Spring
+          {{ image.season }}
         </div>
       </div>
+      {% endfor %}
     </div>
 
-    <div class="style-card">
+    <!-- <div class="style-card">
       <div
         class="flex items-center justify-center rounded bg-indigo-100 p-1 font-medium text-indigo-600"
-      >
-        <img src="{% static 'images/test2.png' %}" class="resultImage" alt="" />
+      > -->
+        <!-- <img src="{% static 'images/test2.png' %}" class="resultImage" alt="" />
       </div>
       <div class="my-2 mt-5">
         <div
@@ -89,7 +92,7 @@ Color {% endblock %} {% block styles %}
           Dark Autumn
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 {% endblock %} {% block scripts %}

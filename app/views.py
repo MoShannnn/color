@@ -39,12 +39,15 @@ def getColor(request):
 # def myColor(request):
 #     return render(request, 'app/colorResult.html')
 
+@login_required(login_url="/login")
 def viewHistory(request):
     return render(request, 'app/history.html')
 
+@login_required(login_url="/login")
 def viewStyle(request):
     return render(request, 'app/getStyle.html')
 
+@login_required(login_url="/login")
 def viewSetting(request):
     if request.method == "POST":
         user = request.user
@@ -76,6 +79,6 @@ def viewSetting(request):
 
 
 
-
+@login_required(login_url="/login")
 def viewColorPalette(request):
     return render(request, 'app/colorPalette.html')
