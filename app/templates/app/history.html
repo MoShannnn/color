@@ -96,7 +96,7 @@ History
   <div class="mt-3 grid select-none gap-5 p-1 tablet:grid-cols-2 desktop:grid-cols-3">
 
     {% for image in images %}
-      <div class="style-card">
+      <div class="style-card" data-id="{{ image.id }}">
         <div class="card-toolbar">
           <button class="toolbar-icon" onclick="toggleToolbar(event)">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
@@ -104,7 +104,7 @@ History
                 d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z" />
             </svg>
           </button>
-          <div class="toolbar-actions">
+          <div class="toolbar-actions" >
             <button class="action-btn" onclick="deleteCard(event)">
               Delete
             </button>
@@ -152,9 +152,16 @@ History
 
   function deleteCard(event) {
     const card = event.currentTarget.closest('.style-card');
+    const id = card.dataset.id; // assuming you have a data-id attribute on the card element
     card.remove();
     alert("Card deleted");
-  }
+
+    // Make an AJAX request to delete the image on the server
+    const url = `/app/deleteImage/${id}`;
+    fetch(url)
+        .then(response => response.text())
+        .then(message => console.log(message));
+}
 
 </script>
 {% endblock %}
