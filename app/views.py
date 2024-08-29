@@ -13,19 +13,12 @@ from mycolor.models import Image
 def getColor(request):
     if request.method == "POST":
         image = request.FILES["image"]
-        
-
-      
-
-
+    
         season = classify_skin_tone(image)
         Image.objects.create(image=image, user=request.user, season=season)
 
        
         image = Image.objects.last()
-
-
-
 
         season_name, personal_colors, lipstick_colors = get_season_and_colors(season)
         seasonInfo = SeasonInfo.objects.get(season__name=season_name)
