@@ -56,7 +56,7 @@ def myColor(request, id):
 
 @login_required(login_url="/login")
 def viewHistory(request):
-    images = Image.objects.filter(user=request.user)
+    images = Image.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'app/history.html', {
         "images": images
     })
@@ -73,18 +73,6 @@ def viewSetting(request):
         user.email = request.POST["email"]
         user.save()
 
-# def viewResult(request, image, season_name, personal_colors, lipstick_colors):
-
-
-#     return render(request, 'app/colorResult.html',{
-#             'image': image,
-#             "season_name": season_name,
-#             "personal_colors": personal_colors,
-#             "lipstick_colors": lipstick_colors
-#         })
-        
-
-
     username = request.user.username
     email = request.user.email
     
@@ -94,8 +82,11 @@ def viewSetting(request):
 
         })
 
-
-
+@login_required(login_url="/login")
+def deleteImage(request, id):
+    image = Image.objects.get(id=id)
+    image.delete()
+    return redirect('history')
 
 @login_required(login_url="/login")
 def viewColorPalette(request):
