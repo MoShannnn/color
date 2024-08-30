@@ -46,7 +46,7 @@ def myColor(request, id):
 
     return render(request, 'app/colorResult.html',
                   {
-                        "image": image,
+                        "image_url": image.image.url,
                         "seasonInfo": seasonInfo,
                         "season_name": season_name,
                         "personal_colors": personal_colors,

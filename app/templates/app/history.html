@@ -101,7 +101,7 @@ History
   {% if images %}
   <div class="mt-3 grid select-none gap-5 p-1 tablet:grid-cols-2 desktop:grid-cols-3">
     {% for image in images %}
-      <div class="style-card" data-id="{{ image.id }}">
+      <div class="style-card" data-id="{{ image.id }}" onclick="navigateToDetailPage(event)" >
         <div class="card-toolbar">
           <button class="toolbar-icon" onclick="toggleToolbar(event)">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
@@ -171,9 +171,17 @@ History
     }
   }
 
+  function navigateToDetailPage(event) {
+    const card = event.currentTarget;
+    const id = card.dataset.id;
+    const url = `{% url 'myColor' %}` + '/' + id;
+   window.location.href = url;
+}
+
   function deleteCard(event) {
+    event.stopImmediatePropagation(); 
     const card = event.currentTarget.closest('.style-card');
-    const id = card.dataset.id; // assuming you have a data-id attribute on the card element
+    const id = card.dataset.id; 
     card.remove();
     alert("Card deleted");
 
@@ -183,6 +191,7 @@ History
         .then(response => response.text())
         .then(message => console.log(message));
 }
+
 
 </script>
 {% endblock %}
