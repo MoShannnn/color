@@ -84,6 +84,11 @@ History
     padding: 8px;
     z-index: 10;
   }
+
+  .card-image:hover{
+    opacity: 0.8;
+    box-shadow: 10px gray;
+  }
 </style>
 {% endblock %} {% block body %}
 <div class="flex h-full w-full flex-col bg-gray-50 p-6 pb-10">
@@ -110,7 +115,7 @@ History
             </button>
           </div>
         </div>
-        <div class="flex items-center justify-center rounded bg-indigo-100 p-1 font-medium text-indigo-600">
+        <div class="flex items-center justify-center rounded bg-indigo-100 p-1 font-medium text-indigo-600 card-image">
           <!-- saved images -->
           <img src="{{ image.image.url }}" class="resultImage" alt="" />
         </div>
