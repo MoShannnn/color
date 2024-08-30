@@ -152,6 +152,7 @@ History
 
 <script>
   function toggleToolbar(event) {
+    event.stopPropagation();
     const toolbarIcon = event.currentTarget;
     const toolbarActions = toolbarIcon.nextElementSibling;
 
@@ -179,7 +180,7 @@ History
 }
 
   function deleteCard(event) {
-    event.stopImmediatePropagation(); 
+    event.stopPropagation();
     const card = event.currentTarget.closest('.style-card');
     const id = card.dataset.id; 
     card.remove();
