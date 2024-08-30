@@ -11,21 +11,21 @@ def get_colors_for_season(season_name):
     personal_category = Category.objects.get(name="Personal Color")
     lipstick_category = Category.objects.get(name="LipStick")
 
-    personal_colors = Color.objects.filter(season=season, category=personal_category)[:14]
-    lipstick_colors = Color.objects.filter(season=season, category=lipstick_category)[:5]
+    personal_colors = Color.objects.filter(season=season, category=personal_category)[:14] 
+    lipstick_colors = Color.objects.filter(season=season, category=lipstick_category)[:5] 
 
 
     return personal_colors, lipstick_colors
 
 def get_season_and_colors(season):
-    season_name = season # call to openai api
-    personal_colors, lipstick_colors = get_colors_for_season(season_name)
+     
+    personal_colors, lipstick_colors = get_colors_for_season(season)
 
     if personal_colors is None or lipstick_colors is None:
         return None, None, None
 
 
-    return season_name, personal_colors, lipstick_colors
+    return season, personal_colors, lipstick_colors
 
 
 
@@ -33,5 +33,5 @@ def get_season_and_colors(season):
 
    
 
-# print(get_season_and_colors("True Spring"))
+
 

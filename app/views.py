@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from app.services import *
 from app.api import *
+from django.contrib import messages
 
 from mycolor.models import Image
 
@@ -14,14 +15,14 @@ def getColor(request):
     if request.method == "POST":
         image = request.FILES["image"]
     
-        season = classify_skin_tone(image)
-        Image.objects.create(image=image, user=request.user, season=season)
+        season = classify_skin_tone(image) # call to openai api
+        Image.objects.create(image=image, user=request.user, season=season) # save image to database
 
        
         image = Image.objects.last()
 
-        season_name, personal_colors, lipstick_colors = get_season_and_colors(season)
-        seasonInfo = SeasonInfo.objects.get(season__name=season_name)
+        season_name, personal_colors, lipstick_colors = get_season_and_colors(season) # return colors for season
+        seasonInfo = SeasonInfo.objects.get(season__name=season_name) # get season info
     
       
 
@@ -39,9 +40,9 @@ def getColor(request):
 
 @login_required(login_url="/login")
 def myColor(request, id):
-    image = Image.objects.get(id=id)
-    season_name, personal_colors, lipstick_colors = get_season_and_colors(image.season)
-    seasonInfo = SeasonInfo.objects.get(season__name=season_name)
+    image = Image.objects.get(id=id) # get clicked record from database
+    season_name, personal_colors, lipstick_colors = get_season_and_colors(image.season) # return colors for season
+    seasonInfo = SeasonInfo.objects.get(season__name=season_name) # get season info
     
 
     return render(request, 'app/colorResult.html',
@@ -56,7 +57,7 @@ def myColor(request, id):
 
 @login_required(login_url="/login")
 def viewHistory(request):
-    images = Image.objects.filter(user=request.user).order_by('-created_at')
+    images = Image.objects.filter(user=request.user).order_by('-created_at') # get all images by latest from database for logged in user 
     return render(request, 'app/history.html', {
         "images": images
     })
@@ -71,7 +72,8 @@ def viewSetting(request):
         user = request.user
         user.username = request.POST["username"]
         user.email = request.POST["email"]
-        user.save()
+        user.save() # update user details
+        messages.success(request, "Profile updated successfully")
 
     username = request.user.username
     email = request.user.email
@@ -84,9 +86,9 @@ def viewSetting(request):
 
 @login_required(login_url="/login")
 def deleteImage(request, id):
-    image = Image.objects.get(id=id)
+    image = Image.objects.get(id=id) # get image id  from database to delete
     image.delete()
-    return redirect('history')
+    return redirect('history') # redirect to history page
 
 @login_required(login_url="/login")
 def viewColorPalette(request):

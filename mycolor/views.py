@@ -4,8 +4,6 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
-from django.utils.text import slugify
-
 from django.contrib.auth.tokens import default_token_generator
 
 
@@ -74,10 +72,10 @@ def verify_email(request, user_uuid):
 
     if request.method == "POST":
         otp = request.POST['otp']
-        user_otp = user.otps.last()
+        user_otp = user.otps.last() # get the last otp sent to the user
         if otp == user_otp.otp_code:
 
-            if user_otp.otp_expires_at < timezone.now():
+            if user_otp.otp_expires_at < timezone.now(): # check if otp has expired
                 messages.warning(request, "OTP has expired, request a new OTP")
                 return render(request, 'auth/verify_email.html', 
                  {'user_uuid': user_uuid}
